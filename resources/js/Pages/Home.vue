@@ -1,20 +1,14 @@
 <script setup>
+
+import Nav from "@/Pages/Shared/Nav.vue"
+
 defineProps({
     name: String,
-    frameworks: Array
 })
 </script>
 
 <template>
-    <h1 class="text-bold text-5xl">Hello, {{ name }}!</h1>
+    <h1 class="text-bold text-5xl">Home</h1>
 
-    <p class="text-sm my-2">In this series, the following frameworks will be used:</p>
-
-    <ul class="list">
-        <li
-            class="list-item"
-            v-for="framework in frameworks"
-            v-text="framework"
-        ></li>
-    </ul>
+    <Nav />
 </template>
