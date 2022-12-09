@@ -29,5 +29,9 @@ Route::get('/settings', function () {
     return Inertia::render('Settings');
 });
 
+Route::post('/loggoutt', function () {
+    // Because Breeze is already installed, the logout route would override this, hence the dumb spelling
+    dd('Logging the user out...' . request('foo'));
+});
 
 require __DIR__ . '/auth.php';
