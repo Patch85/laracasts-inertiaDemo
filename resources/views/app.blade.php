@@ -16,7 +16,7 @@
     @inertiaHead
 </head>
 
-<body>
+<body class="bg-slate-800 m-2">
     <section class="p-8">
         @inertia
     </section>

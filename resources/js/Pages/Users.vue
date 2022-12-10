@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <h1 class="text-bold text-4xl font-bold">Users</h1>
+    <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
 
     <Nav />
 
