@@ -3,8 +3,8 @@ import NavLink from '@/Components/NavLink.vue';
 </script>
 
 <template>
-    <nav class="mt-6">
-        <ul class="list-disc text-indigo-700">
+    <nav class="mr-2">
+        <ul class="flex text-indigo-700 space-x-5">
             <li>
                 <NavLink
                     href="/"

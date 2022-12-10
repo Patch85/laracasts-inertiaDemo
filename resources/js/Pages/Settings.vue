@@ -1,9 +1,14 @@
 <script setup>
-import Nav from "@/Pages/Shared/Nav.vue"
+import Layout from './Shared/Layout.vue';
 </script>
 
 <template>
-    <h1 class="text-bold text-4xl font-bold text-slate-200">Settings</h1>
 
-    <Nav />
+    <Layout>
+        <template #title>
+            <h1 class="text-bold text-4xl font-bold text-slate-200">Settings</h1>
+        </template>
+    </Layout>
+
+
 </template>

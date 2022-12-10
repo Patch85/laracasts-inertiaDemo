@@ -1,23 +1,28 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
-import Nav from "@/Pages/Shared/Nav.vue"
-
+import Layout from "./Shared/Layout.vue";
 defineProps({
     time: String
 })
 </script>
 
 <template>
-    <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
+    <Layout>
+        <template #title>
+            <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
+        </template>
+    </Layout>
 
-    <Nav />
 
-    <div style="margin-top: 1400px">
+    <div
+        style="margin-top: 1400px"
+        class="text-slate-200"
+    >
         <p>The current time is {{ time }}</p>
+        <Link
+            href="/users"
+            class="text-blue-500"
+            preserve-scroll
+        >Refresh</Link>
     </div>
-    <Link
-        href="/users"
-        class="text-blue-500"
-        preserve-scroll
-    >Refresh</Link>
 </template>
