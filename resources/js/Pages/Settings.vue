@@ -4,6 +4,8 @@ import Layout from './Shared/Layout.vue';
 
 <template>
 
+    <Head title="Settings" />
+
     <Layout>
         <template #title>
             <h1 class="text-bold text-4xl font-bold text-slate-200">Settings</h1>
