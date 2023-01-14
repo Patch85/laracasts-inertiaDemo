@@ -14,7 +14,6 @@ use Inertia\Inertia;
 |
 */
 
-
 Route::get('/', function () {
     return Inertia::render('Home');
 });
@@ -22,10 +21,9 @@ Route::get('/', function () {
 Route::get('/users', function () {
     // sleep(2);
     return Inertia::render('Users', [
-        'time' => now()->toTimeString()
+        'time' => now()->toTimeString(),
     ]);
 });
-
 
 Route::get('/settings', function () {
     return Inertia::render('Settings');
@@ -33,7 +31,7 @@ Route::get('/settings', function () {
 
 Route::post('/loggoutt', function () {
     // Because Breeze is already installed, the logout route would override this, hence the dumb spelling
-    dd('Logging the user out...' . request('foo'));
+    dd('Logging the user out...'.request('foo'));
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
