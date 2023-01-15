@@ -5,11 +5,7 @@ export default { Layout, };
 </script>
 
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
-
-defineProps({
-    time: String
-})
+defineProps({ users: Array })
 </script>
 
 <template>
@@ -20,13 +16,14 @@ defineProps({
         <template #title>
             <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
         </template>
+        <template #main>
+        
+            <ul class="mt-6 ml-4">
+                <li v-for="user in users"
+                    :key="user.id"
+                    v-text="user.name"
+                    class="text-md text-slate-200"></li>
+            </ul>
+        </template>
     </Layout>
-
-    <div style="margin-top: 1400px"
-         class="text-slate-200">
-        <p>The current time is {{ time }}</p>
-        <Link href="/users"
-              class="text-blue-500"
-              preserve-scroll>Refresh</Link>
-    </div>
 </template>

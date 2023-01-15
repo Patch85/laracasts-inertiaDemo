@@ -18,6 +18,7 @@ import Nav from './Nav.vue';
     <slot name="title" />
 
     <p class="text-sm text-slate-200 font-semibold">Welcome back, {{ $page.props.auth.user.username }}</p>
+    <slot name="main" />
   </section>
 
 </template>
