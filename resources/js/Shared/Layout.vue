@@ -8,16 +8,19 @@ import Nav from './Nav.vue';
 
     <header class="flex justify-between">
 
-      <h1 class="font-bold text-lg text-slate-300">InertiaDemo App</h1>
+      <div>
+        <h1 class="font-bold text-lg text-slate-300">InertiaDemo App</h1>
+        <p class="text-sm text-slate-200 font-semibold">Welcome back, {{ $page.props.auth.user.username }}</p>
+      </div>
 
       <Nav />
+
     </header>
   </section>
 
   <section class="p-6">
     <slot name="title" />
 
-    <p class="text-sm text-slate-200 font-semibold">Welcome back, {{ $page.props.auth.user.username }}</p>
     <slot name="main" />
   </section>
 
