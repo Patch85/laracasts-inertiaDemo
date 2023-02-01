@@ -27,7 +27,13 @@ watch(search, value => {
 
         <template #title>
             <div class="flex justify-between mb-6">
-                <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
+                <div>
+                    <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
+
+                    <Link href="/users/create"
+                          class="text-sm text-blue-300 ml-4">New User</Link>
+                </div>
+
                 <input type="text"
                        v-model="search"
                        class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 px-2 rounded-lg bg-slate-700 text-slate-200"
