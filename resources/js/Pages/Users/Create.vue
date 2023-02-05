@@ -3,6 +3,10 @@ import { Inertia } from '@inertiajs/inertia';
 import Layout from '@/Shared/Layout.vue';
 import { reactive } from 'vue';
 
+defineProps({
+    errors: Object,
+});
+
 let form = reactive({
     name: '',
     email: '',
@@ -40,6 +44,11 @@ let submit = () => Inertia.post('/users', form);
                            id="name"
                            class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 p-2 rounded-lg bg-slate-700 text-slate-200 w-full"
                            required>
+
+                    <div v-if="errors.name"
+                         v-text="errors.name"
+                         class="text-sm text-red-500 italic mt-1">
+                    </div>
                 </div>
 
                 <div class="mb-6">
@@ -52,6 +61,10 @@ let submit = () => Inertia.post('/users', form);
                            id="email"
                            class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 p-2 rounded-lg bg-slate-700 text-slate-200 w-full"
                            required>
+
+                    <div v-if="errors.email"
+                         v-text="errors.email"
+                         class="text-sm text-red-500 italic mt-1"></div>
                 </div>
 
                 <div class="mb-6">
@@ -64,11 +77,18 @@ let submit = () => Inertia.post('/users', form);
                            id="password"
                            class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 p-2 rounded-lg bg-slate-700 text-slate-200 w-full"
                            required>
+
+                    <div v-if="errors.password"
+                         v-text="errors.password"
+                         class="text-sm text-red-500 italic mt-1">
+                    </div>
                 </div>
 
                 <div class="mb-6">
                     <button type="submit"
-                            class="bg-green-200 hover:bg-green-800 text-slate-700 hover:text-slate-200 border border-slate-200 rounded p-2">Submit</button>
+                            class="bg-green-200 hover:bg-green-800 text-slate-700 hover:text-slate-200 border border-slate-200 rounded p-2">
+                        Submit
+                    </button>
                 </div>
             </form>
         </template>
