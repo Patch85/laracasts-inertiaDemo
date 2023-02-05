@@ -27,11 +27,11 @@ watch(search, value => {
 
         <template #title>
             <div class="flex justify-between mb-6">
-                <div>
+                <div class="flex items-center">
                     <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
 
                     <Link href="/users/create"
-                          class="text-sm text-blue-300 ml-4">New User</Link>
+                          class="text-sm text-blue-300 ml-4 mt-2">New User</Link>
                 </div>
 
                 <input type="text"
