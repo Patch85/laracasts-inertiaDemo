@@ -1,25 +1,16 @@
 <script setup>
-import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-vue3';
 import Layout from '@/Shared/Layout.vue';
-import { reactive, ref } from 'vue';
 
-defineProps({
-    errors: Object,
-});
-
-let form = reactive({
+let form = useForm({
     name: '',
     email: '',
     password: '',
 });
 
-let processing = ref(false);
 
 let submit = () => {
-    Inertia.post('/users', form, {
-        onStart: () => { processing.value = true },
-        onFinish: () => { processing.value = false },
-    });
+    form.post('/users')
 };
 
 </script>
@@ -52,8 +43,8 @@ let submit = () => {
                            class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 p-2 rounded-lg bg-slate-700 text-slate-200 w-full"
                            required>
 
-                    <div v-if="errors.name"
-                         v-text="errors.name"
+                    <div v-if="form.errors.name"
+                         v-text="form.errors.name"
                          class="text-sm text-red-500 italic mt-1">
                     </div>
                 </div>
@@ -69,8 +60,8 @@ let submit = () => {
                            class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 p-2 rounded-lg bg-slate-700 text-slate-200 w-full"
                            required>
 
-                    <div v-if="errors.email"
-                         v-text="errors.email"
+                    <div v-if="form.errors.email"
+                         v-text="form.errors.email"
                          class="text-sm text-red-500 italic mt-1"></div>
                 </div>
 
@@ -85,8 +76,8 @@ let submit = () => {
                            class="border border-slate-50 focus:border-amber-200 shadow-xs shadow-amber-50 p-2 rounded-lg bg-slate-700 text-slate-200 w-full"
                            required>
 
-                    <div v-if="errors.password"
-                         v-text="errors.password"
+                    <div v-if="form.errors.password"
+                         v-text="form.errors.password"
                          class="text-sm text-red-500 italic mt-1">
                     </div>
                 </div>
@@ -94,7 +85,7 @@ let submit = () => {
                 <div class="mb-6">
                     <button type="submit"
                             class="bg-green-200 hover:bg-green-800 text-slate-700 hover:text-slate-200 border border-slate-200 rounded p-2 disabled:bg-stone-200"
-                            :disabled="processing">
+                            :disabled="form.processing">
                         Submit
                     </button>
                 </div>
