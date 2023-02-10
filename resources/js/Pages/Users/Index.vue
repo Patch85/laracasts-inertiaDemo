@@ -3,7 +3,7 @@ import Layout from "@/Shared/Layout.vue";
 import Pagination from "@/Shared/Pagination.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
-import throttle from "lodash/throttle";
+import debounce from "lodash/debounce";
 
 let props = defineProps({
     users: Object,
@@ -12,12 +12,12 @@ let props = defineProps({
 
 let search = ref(props.filters.search);
 
-watch(search, throttle(function (value) {
+watch(search, debounce(function (value) {
     Inertia.get('/users', { search: value }, {
         preserveState: true,
         replace: true,
     });
-}, 500));
+}, 250));
 </script>
 
 <template>
