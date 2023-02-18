@@ -6,8 +6,9 @@ import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
 
 let props = defineProps({
-    users: Object,
+    can: Object,
     filters: Object,
+    users: Object,
 });
 
 let search = ref(props.filters.search);
@@ -21,7 +22,6 @@ watch(search, debounce(function (value) {
 </script>
 
 <template>
-
     <Head title="Users" />
 
     <Layout>
@@ -32,6 +32,7 @@ watch(search, debounce(function (value) {
                     <h1 class="text-bold text-4xl font-bold text-slate-200">Users</h1>
 
                     <Link href="/users/create"
+                          v-if="can.createUser"
                           class="text-sm text-blue-300 ml-4 mt-2">New User</Link>
                 </div>
 
@@ -63,6 +64,7 @@ watch(search, debounce(function (value) {
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <Link :href="`/users/${user.id}/edit`"
+                                        v-if="user.can.edit"
                                               class="text-amber-100 hover:text-amber-300">
                                         Edit
                                         </Link>
