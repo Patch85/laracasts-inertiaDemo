@@ -16,49 +16,51 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Home');
+    });
 
-Route::get('/users', function () {
-    return Inertia::render('Users/Index', [
-        'users' => User::query()
-            ->when(Request::input('search'), function ($query, $search) {
-                $query->where('name', 'like', "%{$search}%");
-            })
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($user) => [
-                'id' => $user->id,
-                'name' => $user->name,
-            ]),
-        'filters' => Request::only(['search']),
-    ]);
-});
+    Route::get('/users', function () {
+        return Inertia::render('Users/Index', [
+            'users' => User::query()
+                ->when(Request::input('search'), function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($user) => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                ]),
+            'filters' => Request::only(['search']),
+        ]);
+    });
 
-Route::get('/users/create', function () {
-    return Inertia::render('Users/Create');
-});
+    Route::get('/users/create', function () {
+        return Inertia::render('Users/Create');
+    });
 
-Route::post('/users', function () {
-    $attributes = Request::validate([
-        'name' => 'required',
-        'email' => 'required',
-        'password' => 'required',
-    ]);
+    Route::post('/users', function () {
+        $attributes = Request::validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
-    User::create($attributes);
+        User::create($attributes);
 
-    return redirect('/users');
-});
+        return redirect('/users');
+    });
 
-Route::get('/settings', function () {
-    return Inertia::render('Settings');
-});
+    Route::get('/settings', function () {
+        return Inertia::render('Settings');
+    });
 
-Route::post('/loggoutt', function () {
-    // Because Breeze is already installed, the logout route would override this, hence the dumb spelling
-    dd('Logging the user out...'.request('foo'));
+    Route::post('/loggoutt', function () {
+        // Because Breeze is already installed, the logout route would override this, hence the dumb spelling
+        dd('Logging the user out...'.request('foo'));
+    });
 });
 
 require __DIR__.'/auth.php';
